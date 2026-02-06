@@ -186,7 +186,7 @@ def template_node(state: GraphState):
 
 
 load_dotenv()
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite")
 def llm_node(state: GraphState):
     messages = [
         SystemMessage(
