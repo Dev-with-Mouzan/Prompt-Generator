@@ -1,0 +1,26 @@
+{
+  "builds": [
+    {
+      "src": "Backend/main.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "Frontend/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/generate-prompt",
+      "dest": "/Backend/main.py"
+    },
+    {
+      "src": "/Frontend/(.*)",
+      "dest": "/Frontend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Frontend/index.html"
+    }
+  ]
+}

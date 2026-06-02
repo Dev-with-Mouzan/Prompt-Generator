@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Frontend/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-brand">
+                <div class="header-logo">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div>
+                    <h1 class="app-title">Prompt Generator</h1>
+                    <p class="app-subtitle">Craft precise AI prompts for your academic work</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="layout">
+            <section class="card form-card">
+                <div class="card-heading">
+                    <h2>Create Your Prompt</h2>
+                    <p>Fill in the details to generate a tailored prompt</p>
+                </div>
+                <form id="promptForm">
+                    <div class="form-group">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <input type="text" id="subject" name="subject" placeholder="e.g. Computer Science" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task_type">Task Type <span class="required">*</span></label>
+                        <select id="task_type" name="task_type" required>
+                            <option value="">Select type</option>
+                            <option value="Assignment">Assignment</option>
+                            <option value="Report">Report</option>
+                            <option value="Presentation">Presentation</option>
+                            <option value="Viva Preparation">Viva Prep</option>
+                            <option value="Coding Project">Coding</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Topic / Question <span class="required">*</span></label>
+                        <input type="text" id="topic" name="topic" placeholder="What should the AI help you with?" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="level">Level <span class="required">*</span></label>
+                            <select id="level" name="level" required>
+                                <option value="">Select level</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ai_usage_policy">AI Usage <span class="required">*</span></label>
+                            <select id="ai_usage_policy" name="ai_usage_policy" required>
+                                <option value="">Select policy</option>
+                                <option value="Explain only">Explain only</option>
+                                <option value="Step-by-step">Step-by-step</option>
+                                <option value="No direct answers">No direct answers</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <details class="advanced-settings">
+                        <summary>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            <span>Advanced Settings</span>
+                            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="advanced-content">
+                            <div class="form-group">
+                                <label for="word_count">Word Count</label>
+                                <input type="text" id="word_count" name="word_count" placeholder="e.g. 500–800">
+                            </div>
+                            <div class="form-group">
+                                <label for="format">Format</label>
+                                <input type="text" id="format" name="format" placeholder="e.g. Essay, Outline">
+                            </div>
+                            <div class="form-group">
+                                <label for="tone">Tone</label>
+                                <input type="text" id="tone" name="tone" placeholder="e.g. Academic" value="Academic">
+                            </div>
+                            <div class="form-group">
+                                <label for="citation_style">Citation Style</label>
+                                <input type="text" id="citation_style" name="citation_style" placeholder="e.g. APA, MLA">
+                            </div>
+                            <div class="form-group">
+                                <label for="teacher_rules">Teacher Constraints</label>
+                                <textarea id="teacher_rules" name="teacher_rules" rows="2" placeholder="Any additional rules…"></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <button type="submit" id="submitBtn" class="btn btn-primary">
+                        <span>Generate Prompt</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </form>
+            </section>
+
+            <section class="card output-card">
+                <div class="card-heading output-heading">
+                    <div>
+                        <h2>Generated Prompt</h2>
+                        <p>Your AI-ready prompt will appear here</p>
+                    </div>
+                    <button id="copyBtn" class="btn btn-secondary" title="Copy to clipboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                    </button>
+                </div>
+                <div class="output-body">
+                    <div id="promptOutput">
+                        <div class="empty-state">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                            <p class="empty-title">No prompt generated yet</p>
+                            <p class="empty-hint">Fill out the form and click <strong>Generate Prompt</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+
+    <script src="/Frontend/script.js"></script>
+</body>
+</html>
