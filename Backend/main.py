@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
-from .agent import app_graph, GraphState
+from agent import app_graph, GraphState
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -11,20 +11,27 @@ app = FastAPI(title="AI Prompt Creator")
 # -----------------------------
 # Mount static files directory safely
 # -----------------------------
-static_path = os.path.join(os.path.dirname(__file__), "..", "Frontend")
+base_dir = os.path.dirname(__file__)
+build_path = os.path.join(base_dir, "..", "Frontend", "dist")
+static_path = build_path if os.path.isdir(build_path) else os.path.join(base_dir, "..", "Frontend")
 if os.path.isdir(static_path):
+    app.mount("/assets", StaticFiles(directory=os.path.join(static_path, "assets")), name="assets")
     app.mount("/Frontend", StaticFiles(directory=static_path), name="Frontend")
 
 # -----------------------------
-# GET route: serve the modern HTML frontend
+# GET route: serve the built React frontend
 # -----------------------------
 @app.get("/", response_class=HTMLResponse)
 def home():
     """Serve the main HTML page"""
-    html_file = os.path.join(static_path, "index.html")
-    if os.path.isfile(html_file):
-        return FileResponse(html_file)
-    return HTMLResponse("<html><body><h1>API is running. Frontend not found locally.</h1></body></html>")
+    index_candidates = [
+        os.path.join(build_path, "index.html"),
+        os.path.join(static_path, "index.html"),
+    ]
+    for index_html in index_candidates:
+        if os.path.isfile(index_html):
+            return FileResponse(index_html)
+    return HTMLResponse("<html><body><h1>API is running. Frontend not found locally. Run `npm run build` in Frontend/ first.</h1></body></html>")
 
 # -----------------------------
 # POST route: JSON API for AJAX requests

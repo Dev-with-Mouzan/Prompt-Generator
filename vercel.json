@@ -1,12 +1,16 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "Backend/main.py",
       "use": "@vercel/python"
     },
     {
-      "src": "Frontend/**",
-      "use": "@vercel/static"
+      "src": "Frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
@@ -15,12 +19,11 @@
       "dest": "/Backend/main.py"
     },
     {
-      "src": "/Frontend/(.*)",
-      "dest": "/Frontend/$1"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/Frontend/index.html"
+      "dest": "/index.html"
     }
   ]
 }

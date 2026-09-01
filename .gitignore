@@ -22,3 +22,9 @@ pip-delete-this-directory.txt
 
 # Logs
 *.log
+
+# Node / Frontend
+node_modules/
+dist/
+.vercel
+npm-debug.log*
