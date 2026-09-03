@@ -122,5 +122,5 @@ The **AI Prompt Creator** leverages **FastAPI** and **LangGraph** to orchestrate
 <br />
 
 <p align="center">
-  <i>Developed with ❤️ by <a href="https://github.com/Dev-with-Mouzan">Mouzan</a></i>
+  <i>Developed with ❤️ by <a href="https://github.com/Dev-with-Mouzan">Mouzan Raza</a></i>
 </p>
